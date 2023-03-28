@@ -25,6 +25,10 @@ namespace library
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            // TODO: This line of code loads data into the '_library_kckcDataSet_genre.Genre' table. You can move, or remove it, as needed.
+            this.genreTableAdapter.Fill(this._library_kckcDataSet_genre.Genre);
+            // TODO: This line of code loads data into the '_library_kckcDataSet.Author' table. You can move, or remove it, as needed.
+            this.authorTableAdapter.Fill(this._library_kckcDataSet.Author);
             // TODO: This line of code loads data into the '_library_kckcDataSet.Book' table. You can move, or remove it, as needed.
             this.bookTableAdapter.Fill(this._library_kckcDataSet.Book);
 
@@ -32,25 +36,12 @@ namespace library
 
         private void button1_Click(object sender, EventArgs e)
         {
-            string connectionString = "Data Source=library-kckc.mssql.somee.com;Initial Catalog=library-kckc;User ID=kacprodyl_SQLLogin_1;Password=ybqwxa2m4h;";
-            string tableName = "Book";
-            using (var connection = new SqlConnection(connectionString))
-            {
-                connection.Open();
-                var adapter = new SqlDataAdapter($"SELECT * FROM {tableName}", connection);
-                var builder = new SqlCommandBuilder(adapter);
-                DataTable table = new DataTable();
-                adapter.Fill(table);
+            var Book = new Book();
 
-                var newRow = table.NewRow();
-                newRow["name"] = "Czary mary9";
-                newRow["id_genre"] = 1;
-                newRow["publisher"] = "Hokus Pokus9";
-                table.Rows.Add(newRow);
+            Book.AddBook(textBox_title.Text, Convert.ToInt32(comboBox_genre.SelectedValue), textBox_publisher.Text);
 
-                adapter.Update(table);
-            }
-
+            
         }
+
     }
 }
