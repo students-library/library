@@ -10,7 +10,7 @@ namespace library
 {
     internal class Book
     {
-        public void AddBook(string book_name, int genre_id, string book_publisher)
+        public static void AddBook(string book_name, int genre_id, string book_publisher)
         {
             string connectionString = "Data Source=library-kckc.mssql.somee.com;Initial Catalog=library-kckc;User ID=kacprodyl_SQLLogin_1;Password=ybqwxa2m4h;";
             string tableName = "Book";
